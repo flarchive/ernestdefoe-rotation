@@ -1,0 +1,92 @@
+{
+    "name": "ernestdefoe/rotation",
+    "description": "Rotation — members' music listening for Flarum 2: connect Last.fm, now playing and top tracks on profiles, listening-time levels, song, artist and listener leaderboards, widgets, weekly recaps, and players for music links in posts.",
+    "keywords": [
+        "flarum",
+        "flarum-extension",
+        "music",
+        "lastfm",
+        "scrobbling",
+        "now-playing",
+        "leaderboard",
+        "spotify",
+        "embeds"
+    ],
+    "type": "flarum-extension",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ernest Defoe",
+            "email": "ernestdefoe@gmail.com"
+        }
+    ],
+    "homepage": "https://github.com/ernestdefoe/rotation",
+    "support": {
+        "issues": "https://github.com/ernestdefoe/rotation/issues",
+        "source": "https://github.com/ernestdefoe/rotation"
+    },
+    "funding": [
+        {
+            "type": "other",
+            "url": "https://buymeacoffee.com/ernestdefoe"
+        }
+    ],
+    "require": {
+        "php": "^8.3",
+        "flarum/core": "^2.0"
+    },
+    "suggest": {
+        "flarum/gdpr": "Members' listening data is included in their data export and erased with their account.",
+        "fof/forum-widgets-core": "Rotation widgets for FoF Forum Widgets.",
+        "ernestdefoe/bespoke": "Rotation widgets for Bespoke."
+    },
+    "autoload": {
+        "psr-4": {
+            "Ernestdefoe\\Rotation\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ernestdefoe\\Rotation\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "Rotation",
+            "category": "feature",
+            "icon": {
+                "name": "fas fa-compact-disc",
+                "backgroundColor": "#7c3aed",
+                "color": "#fff"
+            },
+            "optional-dependencies": [
+                "flarum/gdpr",
+                "fof/forum-widgets-core"
+            ]
+        }
+    },
+    "require-dev": {
+        "flarum/gdpr": "^2.0",
+        "flarum/phpstan": "^2.0",
+        "flarum/testing": "^2.0"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "scripts": {
+        "test": [
+            "@test:integration"
+        ],
+        "test:integration": "phpunit -c tests/phpunit.integration.xml",
+        "test:setup": "@php tests/integration/setup.php",
+        "analyse:phpstan": "phpstan analyse"
+    },
+    "scripts-descriptions": {
+        "test": "Runs all tests.",
+        "test:integration": "Runs all integration tests.",
+        "test:setup": "Sets up a database for use with integration tests. Execute this only once.",
+        "analyse:phpstan": "Run static analysis"
+    },
+    "minimum-stability": "beta",
+    "prefer-stable": true
+}

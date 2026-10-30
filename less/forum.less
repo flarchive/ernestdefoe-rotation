@@ -1,0 +1,445 @@
+// Rotation. Every colour comes from Flarum 2's own custom properties, so
+// themes and dark mode carry over; links and headings set theirs explicitly
+// because themes recolour both.
+
+// 🚨 Themes recolour every link with selectors up to (0,3,1) — Bespoke's is
+// `:root:not([data-theme^="dark"]) a:not(.Button)` — so Rotation's own links
+// repeat their class to stay above that, whatever order the CSS loads in.
+.rotation-link(@color) {
+  &,
+  &:hover,
+  &:focus {
+    color: @color;
+  }
+}
+
+.RotationPlayer {
+  display: block;
+  max-width: 560px;
+  margin: 8px 0;
+
+  iframe {
+    display: block;
+    width: 100%;
+    border: 0;
+    border-radius: 12px;
+    background: var(--control-bg);
+  }
+
+  &--video {
+    aspect-ratio: 16 / 9;
+
+    iframe {
+      height: 100%;
+    }
+  }
+}
+
+// Three bars bouncing: "playing now".
+.RotationEq {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 12px;
+  margin-right: 4px;
+  vertical-align: -1px;
+
+  i {
+    display: block;
+    width: 3px;
+    background: var(--primary-color);
+    border-radius: 1px;
+    animation: RotationEq 0.9s ease-in-out infinite alternate;
+
+    &:nth-child(2) {
+      animation-delay: -0.3s;
+    }
+    &:nth-child(3) {
+      animation-delay: -0.6s;
+    }
+  }
+}
+
+@keyframes RotationEq {
+  from {
+    height: 3px;
+  }
+  to {
+    height: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .RotationEq i {
+    animation: none;
+    height: 8px;
+  }
+}
+
+.RotationLevel {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 18px;
+  color: var(--control-color);
+  background: var(--control-bg);
+  white-space: nowrap;
+
+  .icon,
+  .fas {
+    margin-right: 2px;
+  }
+}
+
+.RotationLevel-name {
+  font-weight: 400;
+}
+
+// Lists: widgets, the charts page, profile tops.
+.RotationList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 0;
+    min-width: 0;
+  }
+
+  .Avatar {
+    --size: 32px;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+}
+
+.RotationList.RotationList.RotationList a:not(.Button) {
+  .rotation-link(var(--text-color));
+}
+
+.RotationAvatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: var(--control-color);
+  background: var(--control-bg);
+}
+
+.RotationList-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.RotationList-name,
+.RotationList-track {
+  display: block;
+  font-weight: 600;
+  color: var(--text-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.RotationList-track {
+  font-weight: 400;
+  font-size: 13px;
+}
+
+.RotationList-by,
+.RotationList-count {
+  font-size: 13px;
+  color: var(--muted-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.RotationList-count {
+  flex-shrink: 0;
+}
+
+.RotationList-rank {
+  flex-shrink: 0;
+  width: 22px;
+  text-align: right;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted-color);
+}
+
+.RotationWidget {
+  margin-bottom: 20px;
+}
+
+.IndexPage-nav .RotationWidget,
+.sideNav .RotationWidget {
+  max-width: 190px;
+}
+
+.RotationWidget-title {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--muted-color);
+}
+
+.RotationWidget-more {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 13px;
+
+}
+
+.RotationWidget.RotationWidget .RotationWidget-more:not(.Button) {
+  .rotation-link(var(--primary-color));
+}
+
+// Profile → Music.
+.RotationMusic {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  h3 {
+    margin: 0 0 10px;
+    font-size: 15px;
+    color: var(--heading-color, var(--text-color));
+  }
+
+  h4 {
+    margin: 0 0 6px;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--muted-color);
+  }
+}
+
+.RotationEmpty {
+  color: var(--muted-color);
+}
+
+.RotationConnect {
+  padding: 32px 20px;
+  text-align: center;
+  border-radius: var(--border-radius);
+  background: var(--control-bg);
+  color: var(--text-color);
+
+  h3 {
+    margin: 8px 0;
+  }
+
+  p {
+    max-width: 520px;
+    margin: 0 auto 16px;
+  }
+}
+
+.RotationConnect-icon {
+  font-size: 32px;
+  color: var(--primary-color);
+}
+
+.RotationNow {
+  padding: 16px 18px;
+  border-radius: var(--border-radius);
+  background: var(--control-bg);
+
+  &.is-live {
+    box-shadow: inset 4px 0 0 var(--primary-color);
+  }
+}
+
+.RotationNow-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--muted-color);
+}
+
+.RotationNow-title {
+  margin-top: 4px;
+  font-size: 18px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.RotationNow.RotationNow .RotationNow-title a:not(.Button),
+.RotationRecent.RotationRecent.RotationRecent a:not(.Button) {
+  .rotation-link(var(--text-color));
+}
+
+.RotationNow-artist {
+  color: var(--muted-color);
+}
+
+.RotationStats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(~"min(140px, 100%)", 1fr));
+  gap: 12px;
+}
+
+.RotationStats-help {
+  grid-column: ~"1 / -1";
+  margin: 0;
+}
+
+.RotationStat {
+  min-width: 0;
+  padding: 12px 14px;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--control-bg);
+}
+
+.RotationStat-label {
+  font-size: 12px;
+  color: var(--muted-color);
+}
+
+.RotationStat-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.RotationStat-name {
+  display: block;
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 400;
+  color: var(--muted-color);
+}
+
+.RotationStat-hint {
+  font-size: 12px;
+  color: var(--muted-color);
+}
+
+.RotationLevelBar {
+  height: 6px;
+  margin: 6px 0 4px;
+  border-radius: 3px;
+  background: var(--control-bg);
+  overflow: hidden;
+
+  span {
+    display: block;
+    height: 100%;
+    background: var(--primary-color);
+  }
+}
+
+.RotationSection-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+
+  h3 {
+    margin: 0;
+  }
+}
+
+.RotationTops {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(~"min(260px, 100%)", 1fr));
+  gap: 24px;
+}
+
+.RotationRecent {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--control-bg);
+  }
+}
+
+.RotationRecent-track {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.RotationRecent-time {
+  flex-shrink: 0;
+  font-size: 13px;
+  color: var(--muted-color);
+}
+
+.RotationCredit {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted-color);
+}
+
+.RotationCredit.RotationCredit.RotationCredit a:not(.Button) {
+  .rotation-link(var(--muted-color));
+  text-decoration: underline;
+}
+
+.RotationSettings {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--control-bg);
+
+  > *,
+  .Form-group,
+  .helpText {
+    margin: 0;
+  }
+
+  h3 {
+    margin: 0;
+  }
+
+  .Form-group label {
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .Select {
+    max-width: 260px;
+  }
+}
+
+// /rotation
+.RotationChartsPage-title {
+  margin: 0 0 16px;
+  color: var(--heading-color, var(--text-color));
+}
+
+.RotationChartsPage-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.RotationChartsPage-help {
+  margin-top: 20px;
+}

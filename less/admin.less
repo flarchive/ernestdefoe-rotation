@@ -1,0 +1,47 @@
+.RotationBands-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 10px;
+
+  &.is-sorting {
+    user-select: none;
+  }
+}
+
+.RotationBands-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--control-bg);
+  color: var(--text-color);
+
+  &.is-dragging {
+    background: var(--body-bg);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  input[type='number'] {
+    width: 90px;
+  }
+
+  input[type='text'] {
+    flex: 1;
+    min-width: 140px;
+  }
+}
+
+.RotationBands-handle {
+  cursor: grab;
+  padding: 4px;
+  color: var(--muted-color);
+  touch-action: none;
+}
+
+.RotationServices .checkbox {
+  display: block;
+  margin: 4px 0;
+}
